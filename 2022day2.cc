@@ -87,7 +87,6 @@ int get_score(std::istream& input) {
     input.get(trash);  // new line
     total_score += get_outcome_score(a, b);
     total_score += get_shape_score(b);
-    cout << total_score << "\n";
   }
   return total_score;
 }
@@ -103,7 +102,6 @@ int main(int argc, char* argv[]) {
     std::cerr << "Failed to open file.\n";
     return 1;
   }
-  get_score(input);
-  // std::cout << "score following strategy guide is " << get_score(input);
+  std::cout << "score following strategy guide is " << get_score(input);
   return 0;
 }
