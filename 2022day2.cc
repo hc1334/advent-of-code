@@ -28,6 +28,12 @@ const char B_ROCK = 'X';
 const char B_PAPER = 'Y';
 const char B_SCISSOR = 'Z';
 
+// for part 2
+const char LOSE_RESULT = 'X';
+const char DRAW_RESULT = 'Y';
+const char WIN_RESULT = 'Z';
+
+// part 1
 int get_shape_score(char b) {
   switch (b) {
     case B_ROCK:
@@ -91,6 +97,58 @@ int get_score(std::istream& input) {
   return total_score;
 }
 
+// part 2
+// TODO(helenchang): clean up huge switch blocks
+int solve_pt2(char a, char result) {
+  switch (a) {
+    case A_ROCK:
+      switch (result) {
+        case WIN_RESULT:
+          return WIN_SCORE + PAPER_SCORE;
+        case LOSE_RESULT:
+          return LOSE_SCORE + SCISSOR_SCORE;
+        case DRAW_RESULT:
+          return DRAW_SCORE + ROCK_SCORE;
+      }
+    case A_PAPER:
+      switch (result) {
+        case WIN_RESULT:
+          return WIN_SCORE + SCISSOR_SCORE;
+        case LOSE_RESULT:
+          return LOSE_SCORE + ROCK_SCORE;
+        case DRAW_RESULT:
+          return DRAW_SCORE + PAPER_SCORE;
+      }
+    case A_SCISSOR:
+      switch (result) {
+        case WIN_RESULT:
+          return WIN_SCORE + ROCK_SCORE;
+        case LOSE_RESULT:
+          return LOSE_SCORE + PAPER_SCORE;
+        case DRAW_RESULT:
+          return DRAW_SCORE + SCISSOR_SCORE;
+      }
+  }
+  return 0;
+}
+
+int get_score2(std::istream& input) {
+  int total_score = 0;
+  char a;
+  char b;
+  char trash;
+  while (!input.eof()) {
+    if (!input.get(a)) {
+      break;
+    }
+    input.get(trash);  // space
+    input.get(b);
+    input.get(trash);  // new line
+    total_score += solve_pt2(a, b);
+  }
+  return total_score;
+}
+
 int main(int argc, char* argv[]) {
   if (argc != 2) {
     std::cerr << "This program expects one parameter that is the input file to "
@@ -102,6 +160,10 @@ int main(int argc, char* argv[]) {
     std::cerr << "Failed to open file.\n";
     return 1;
   }
-  std::cout << "score following strategy guide is " << get_score(input);
+  // input is passed by reference so can't be shared between two methods. I
+  // gotta find a better way... 
+  // std::cout << "score following strategy guide is
+  // " << get_score(input);
+  std::cout << "score following strategy guide 2 is " << get_score2(input);
   return 0;
 }
