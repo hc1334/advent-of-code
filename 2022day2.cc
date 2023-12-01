@@ -79,20 +79,11 @@ int get_outcome_score(char a, char b) {
   return 0;
 }
 
-int get_score(std::istream& input) {
+int get_score(const std::vector<std::pair<char, char>>& input) {
   int total_score = 0;
-  char a;
-  char b;
-  char trash;
-  while (!input.eof()) {
-    if (!input.get(a)) {
-      break;
-    }
-    input.get(trash);  // space
-    input.get(b);
-    input.get(trash);  // new line
-    total_score += get_outcome_score(a, b);
-    total_score += get_shape_score(b);
+  for (auto& pair : input) {
+    total_score += get_outcome_score(pair.first, pair.second);
+    total_score += get_shape_score(pair.second);
   }
   return total_score;
 }
@@ -132,19 +123,10 @@ int solve_pt2(char a, char result) {
   return 0;
 }
 
-int get_score2(std::istream& input) {
+int get_score2(const std::vector<std::pair<char, char>>& input) {
   int total_score = 0;
-  char a;
-  char b;
-  char trash;
-  while (!input.eof()) {
-    if (!input.get(a)) {
-      break;
-    }
-    input.get(trash);  // space
-    input.get(b);
-    input.get(trash);  // new line
-    total_score += solve_pt2(a, b);
+  for (auto& pair : input) {
+    total_score += solve_pt2(pair.first, pair.second);
   }
   return total_score;
 }
@@ -155,15 +137,20 @@ int main(int argc, char* argv[]) {
                  "read.\n";
     return 1;
   }
-  std::ifstream input(argv[1]);
-  if (!input.is_open()) {
+  std::ifstream input_stream(argv[1]);
+  if (!input_stream.is_open()) {
     std::cerr << "Failed to open file.\n";
     return 1;
   }
-  // input is passed by reference so can't be shared between two methods. I
-  // gotta find a better way... 
-  // std::cout << "score following strategy guide is
-  // " << get_score(input);
-  std::cout << "score following strategy guide 2 is " << get_score2(input);
+  std::vector<std::pair<char, char>> input = {};
+  string tmp = "";
+  while (!input_stream.eof()) {
+    std::getline(input_stream, tmp);
+    // ooh so dangerous
+    input.emplace_back(tmp[0], tmp[2]);
+  }
+  std::cout << "score following strategy guide is " << get_score(input) << "\n";
+  std::cout << "score following strategy guide 2 is " << get_score2(input)
+            << "\n";
   return 0;
 }
