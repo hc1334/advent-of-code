@@ -9,3 +9,8 @@ cc_binary(
     name = "2022day2",
     srcs = ["2022day2.cc"],
 )
+
+cc_binary(
+    name = "2023day1",
+    srcs = ["2023day1.cc"],
+)
