@@ -4,7 +4,6 @@
 #include <fstream>
 #include <iostream>
 #include <map>
-#include <regex>
 #include <string>
 #include <vector>
 
@@ -102,7 +101,6 @@ int main(int argc, char* argv[]) {
   std::vector<Game> games;
   string tmp = "";
   while (!input_stream.eof()) {
-    // Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
     std::getline(input_stream, tmp, ':');  // "Game [n]:"
     std::getline(input_stream, tmp);
     if (tmp.empty()) continue;
@@ -119,13 +117,6 @@ int main(int argc, char* argv[]) {
       game.sets.push_back(set);
     }
     games.push_back(game);
-  }
-  for (const auto& game : games) {
-    for (const auto& set : game.sets) {
-      for (const auto& pair : set.pairs) {
-        printf("%s: %s\n", pair.first.c_str(), pair.second.c_str());
-      }
-    }
   }
   printf("answer to part 1: %d\n", sum_possible(games));
   printf("answer to part 2: %d\n", min_sum_power(games));
