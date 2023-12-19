@@ -10,9 +10,6 @@ using std::cout;
 using std::string;
 using std::vector;
 
-bool contains(vector<char> v, char c) {
-  return std::find(v.begin(), v.end(), c) != v.end();
-}
 const long PT2 = 999999;
 const long PT1 = 1;
 
