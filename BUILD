@@ -1,6 +1,14 @@
 load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library", "cc_test")
 
 cc_binary(
+    name = "utils",
+    srcs = [
+      "utils.h",
+      "utils.cc",
+    ],
+)
+
+cc_binary(
     name = "2022day1",
     srcs = ["2022day1.cc"],
 )
@@ -78,5 +86,17 @@ cc_binary(
 cc_binary(
     name = "2023day12",
     srcs = ["2023day12.cc"],
+    deps = ["@com_google_absl//absl/strings"],
+)
+
+cc_binary(
+    name = "2024day1",
+    srcs = ["2024day1.cc"],
+    deps = ["@com_google_absl//absl/strings"],
+)
+
+cc_binary(
+    name = "2024day2",
+    srcs = ["2024day2.cc"],
     deps = ["@com_google_absl//absl/strings"],
 )
