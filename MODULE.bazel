@@ -1,0 +1,21 @@
+###############################################################################
+# Bazel now uses Bzlmod by default to manage external dependencies.
+# Please consider migrating your external dependencies from WORKSPACE to MODULE.bazel.
+#
+# For more details, please check https://github.com/bazelbuild/bazel/issues/18958
+###############################################################################
+
+module(
+      name = "re2",
+          version = "2023-11-01",
+              compatibility_level = 1,
+)
+bazel_dep(name = "platforms", version = "0.0.8")
+bazel_dep(name = "rules_cc", version = "0.0.9")
+bazel_dep(name = "abseil-cpp", version = "20230802.0", repo_name = "com_google_absl")
+
+# These dependencies will be ignored when the `re2` module is not
+# the root module (or when `--ignore_dev_dependency` is enabled).
+bazel_dep(name = "google_benchmark", version = "1.8.3", dev_dependency = True)
+bazel_dep(name = "googletest", version = "1.14.0.bcr.1", dev_dependency = True)
+
