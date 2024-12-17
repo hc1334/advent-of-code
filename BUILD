@@ -105,3 +105,9 @@ cc_binary(
     name = "2024day3",
     srcs = ["2024day3.cc"],
 )
+
+cc_binary(
+    name = "2024day4",
+    srcs = ["2024day4.cc"],
+    deps = ["@com_google_absl//absl/strings"],
+)
