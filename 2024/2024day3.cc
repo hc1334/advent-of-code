@@ -9,7 +9,7 @@ using std::string;
 using std::ifstream;
 
 int main(int argc, char* argv[]) {
-  ifstream input_stream("/Users/helenchang/Code/advent-of-code/advent-of-code/inputs/2023-day3pt1-pairs.txt");
+  ifstream input_stream("/Users/helenchang/Code/advent-of-code/advent-of-code/2024/inputs/2023-day3pt1-pairs.txt");
   if (!input_stream.is_open()) {
     std::cerr << "Failed to open file.\n";
     return 1;

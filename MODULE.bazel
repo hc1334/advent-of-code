@@ -10,9 +10,9 @@ module(
           version = "2023-11-01",
               compatibility_level = 1,
 )
-bazel_dep(name = "platforms", version = "0.0.8")
-bazel_dep(name = "rules_cc", version = "0.0.9")
-bazel_dep(name = "abseil-cpp", version = "20230802.0", repo_name = "com_google_absl")
+bazel_dep(name = "platforms", version = "0.0.11")
+bazel_dep(name = "rules_cc", version = "0.1.1")
+bazel_dep(name = "abseil-cpp", version = "20240116.1", repo_name = "com_google_absl")
 
 # These dependencies will be ignored when the `re2` module is not
 # the root module (or when `--ignore_dev_dependency` is enabled).

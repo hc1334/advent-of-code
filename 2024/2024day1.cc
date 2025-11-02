@@ -44,7 +44,7 @@ long part2(const vector<int>& right, const vector<int>& left) {
 }
 
 int main(int argc, char* argv[]) {
-  ifstream input_stream("/Users/helenchang/Code/advent-of-code/advent-of-code/inputs/2024-day1.txt");
+  ifstream input_stream("/Users/helenchang/Code/advent-of-code/advent-of-code/2024/inputs/2024-day1.txt");
   if (!input_stream.is_open()) {
     std::cerr << "Failed to open file.\n";
     return 1;

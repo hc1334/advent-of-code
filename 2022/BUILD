@@ -7,3 +7,13 @@ cc_binary(
       "utils.cc",
     ],
 )
+
+cc_binary(
+    name = "2022day1",
+    srcs = ["2022day1.cc"],
+)
+
+cc_binary(
+    name = "2022day2",
+    srcs = ["2022day2.cc"],
+)
